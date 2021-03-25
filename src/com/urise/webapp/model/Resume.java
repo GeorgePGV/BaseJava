@@ -1,4 +1,4 @@
-package ArrayStorage;
+package com.urise.webapp.model;
 
 /**
  * Initial resume class
@@ -6,7 +6,7 @@ package ArrayStorage;
 public class Resume {
 
     // Unique identifier
-    String uuid;
+    public String uuid;
 
     public String getUuid() {
         return uuid;

@@ -1,4 +1,6 @@
-package ArrayStorage;
+package com.urise.webapp.storage;
+
+import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
 
@@ -6,46 +8,43 @@ import java.util.Arrays;
  * Array based storage for Resumes
  */
 public class ArrayStorage {
-    Resume[] storage = new Resume[10000];
+    Resume[] storage = new Resume[10_000];
     int size = 0;
 
-    void clear() {
-        /*for (int i = 0; i < size ; i++){
-            storage[i] = null;
-        }
-        size = 0;*/
+    public void clear() {
         Arrays.fill(storage, 0,size,null);
         size = 0;
     }
 
-    void save(Resume r) {
+    public void save(Resume resume) {
         boolean indicator = true;
-        for (int i = 0; i < size ; i++){
-            if(storage[i] == r){
+        for (int i = 0; i < size; i++) {
+            if (storage[i] == resume) {
                 indicator = false;
                 System.out.println("Ошибка: такое резюме уже есть в хранилище");
             }
         }
-        if(size != 10000) {
-            storage[size] = r;
+        if (size != 10_000) {
+            storage[size] = resume;
             size++;
         } else {
             System.out.println("Ошибка: в хранилище нет места");
         }
     }
 
-    void update(Resume r) {
-        if(checkForErrors(r)) {
+    public void update(Resume resume) {
+        if (checkForErrors(resume.getUuid())) {
             for (int i = 0; i < size; i++) {
-                if (storage[i] == r) {
-                    storage[i].setUuid(r.getUuid());
+                if (storage[i].getUuid().equals(resume.getUuid())) {
+                    storage[i] = resume;
                 }
             }
         }
     }
-   Resume get(String uuid) {
-       if(checkForErrors(uuid)) {
-           for (int i = 0; i < size; i++) {
+
+    public Resume get(String uuid) {
+        if (checkForErrors(uuid)) {
+            for (int i = 0; i < size; i++) {
                if (uuid.equals(storage[i].getUuid())) {
                    return storage[i];
                }
@@ -54,7 +53,7 @@ public class ArrayStorage {
        return null;
     }
 
-    void delete(String uuid) {
+    public void delete(String uuid) {
         if(checkForErrors(uuid)) {
             for (int i = 0; i < size; i++) {
                 if (uuid.equals(storage[i].getUuid())) {
@@ -67,25 +66,10 @@ public class ArrayStorage {
         }
     }
 
-    boolean checkForErrors(Resume r){
+    public boolean checkForErrors(String uuid){
         boolean result = false;
         for (int i = 0; i < size; i++) {
-            if (storage[i] == r){
-                result = true;
-                break;
-            }
-        }
-        if (result == false){
-            System.out.println("Ошибка: такого резюме нет в хранилище");
-        }
-        return result;
-    }
-
-
-    boolean checkForErrors(String uuid){
-        boolean result = false;
-        for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid() == uuid){
+            if (storage[i].getUuid().equals(uuid)) {
                 result = true;
                 break;
             }
@@ -97,18 +81,13 @@ public class ArrayStorage {
     }
 
     /**
-     * @return array, contains only Resumles in storage (without null)
+     * @return array, contains only Resumes in storage (without null)
      */
-    Resume[] getAll() {
-        /*Resume[]  allResumes = new Resume[size];
-        for (int i = 0; i < size ; i++){
-            allResumes[i] = storage[i];
-        }*/
-        Resume[] allResumes = Arrays.copyOfRange(storage,0,size);
-        return  allResumes;
+    public Resume[] getAll() {
+        return Arrays.copyOfRange(storage, 0, size);
     }
 
-    int size() {
+    public int size() {
         return size;
     }
 }
