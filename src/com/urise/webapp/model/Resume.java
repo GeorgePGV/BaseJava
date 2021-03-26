@@ -6,7 +6,8 @@ package com.urise.webapp.model;
 public class Resume {
 
     // Unique identifier
-    public String uuid;
+    private String uuid;
+    private int index;
 
     public String getUuid() {
         return uuid;
@@ -14,6 +15,14 @@ public class Resume {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
     }
 
    /* @Override
