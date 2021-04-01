@@ -27,7 +27,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         size++;
     }
 
-    public static void sortInOrder(String uuid, Resume[] storage) {
+    /*public static void sortInOrder(String uuid, Resume[] storage) {
         int idx = Arrays.binarySearch(storage, 0, size ,uuid);
 
         if (idx < 0) {
@@ -37,8 +37,8 @@ public class SortedArrayStorage extends AbstractArrayStorage {
         for (int i = idx + 1; i < size - 1; i++) {
             storage[i] = storage[i - 1];
         }
-        //storage[idx] = ;
-    }
+        storage[idx] = ;
+    }*/
 }
 
 
