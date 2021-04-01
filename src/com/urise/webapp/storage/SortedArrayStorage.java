@@ -2,32 +2,39 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 
+import java.util.Arrays;
+
 public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected int getIndex(String uuid) {
-        return 0;
+    public int getIndex(String uuid) {
+        Resume searchKey = new Resume();
+        searchKey.setUuid(uuid);
+        return Arrays.binarySearch(storage, 0, size, uuid);
     }
 
     @Override
     public void save(Resume resume) {
-
+        sortInOrder(resume, storage);
+        size++;
     }
 
-    public static void selectionSort(Resume[] array, int size) {
-        for (int i = 0; i < size; i++) {
-            Resume min = array[i];
-            int minIndex = i;
-            for (int j = i+1; j < size; j++) {
-                if (array[j].getUuid() < min.getUuid()) {
-                    min = array[j];
-                    minIndex = j;
-                }
-            }
-            int swap = array[i];
-            array[i] = min;
-            array[minIndex] = swap;
+    public static void sortInOrder(Resume x, Resume[] storage) {
+        if (x == null)
+            throw new IllegalArgumentException();
+
+        int idx = Arrays.binarySearch(storage, 0, size , x.getUuid());
+
+        if (idx < 0) {
+            idx = -idx - 1;
         }
-    }
 
+        for (int i = idx + 1; i < size - 1; i++) {
+            storage[i] = storage[i - 1];
+        }
+        storage[idx] = x;
+    }
 }
+
+
+

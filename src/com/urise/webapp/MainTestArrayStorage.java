@@ -1,13 +1,16 @@
 package com.urise.webapp;
 
-import com.urise.webapp.storage.ArrayStorage;
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.AbstractArrayStorage;
+import com.urise.webapp.storage.ArrayStorage;
+import com.urise.webapp.storage.SortedArrayStorage;
 
 /**
  * Test for your com.urise.webapp.storage.ArrayStorage implementation
  */
 public class MainTestArrayStorage {
     static final ArrayStorage ARRAY_STORAGE = new ArrayStorage();
+    static final AbstractArrayStorage sorted = new SortedArrayStorage();
 
     public static void main(String[] args) {
         Resume r1 = new Resume();
@@ -37,6 +40,14 @@ public class MainTestArrayStorage {
         printAll();
 
         System.out.println("Size: " + ARRAY_STORAGE.size());
+
+        sorted.save(r3);
+        sorted.save(r2);
+        sorted.save(r1);
+
+        System.out.println(sorted.getIndex(r1.getUuid()));
+        System.out.println(sorted.getIndex(r2.getUuid()));
+        System.out.println(sorted.getIndex(r3.getUuid()));
     }
 
     static void printAll() {
