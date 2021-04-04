@@ -9,7 +9,6 @@ public abstract class AbstractArrayStorage implements Storage{
 
     protected final Resume[] storage = new Resume[10_000];
     protected static int size = 0;
-    protected int index;
 
     public void clear() {
         Arrays.fill(storage, 0,size,null);
@@ -20,10 +19,9 @@ public abstract class AbstractArrayStorage implements Storage{
         int index = getIndex(resume.getUuid());
         if (index >= 0 ){
             System.out.println("Ошибка: резюме с uuid: " + resume.getUuid() + " уже есть в хранилище");
-        } else if (size == storage.length){
+        } else if (size == STORAGE_LIMIT){
             System.out.println("Ошибка: в хранилище нет места");
         } else {
-            //index = (index + 1) * -1;
             putResume(resume, index);
             size++;
         }
@@ -31,25 +29,36 @@ public abstract class AbstractArrayStorage implements Storage{
     }
 
     public void update(Resume resume) {
-        if (getIndex(resume.getUuid()) != -1) {
-            storage[getIndex(resume.getUuid())] = resume;
+        int index = getIndex(resume.getUuid());
+        if (index != -1) {
+            storage[index] = resume;
         }
     }
 
     public Resume get(String uuid) {
-        if (getIndex(uuid) != -1) {
-            return storage[getIndex(uuid)];
-        } else {
+        int index = getIndex(uuid);
+        if (index != -1) {
+            return storage[index];
+        } {
             return null;
         }
     }
 
     public void delete(String uuid) {
-        if(getIndex(uuid) != -1) {
-            if (size - getIndex(uuid) >= 0)
-                replacingDeletedResume(getIndex(uuid));
+        int index = getIndex(uuid);
+        if(index != -1) {
+            if (size - index >= 0)
+                replacingDeletedResume(index);
             size--;
             storage[size - 1] = null;
+        }
+    }
+
+    public boolean resumesComparison(Resume r1, Resume r2){
+        if(r1.getUuid().equals(r2.getUuid())) {
+            return true;
+        } {
+            return false;
         }
     }
 

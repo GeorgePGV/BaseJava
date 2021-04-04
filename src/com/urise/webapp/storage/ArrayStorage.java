@@ -20,12 +20,9 @@ public class ArrayStorage extends AbstractArrayStorage {
     @Override
     public int getIndex(String uuid){
         for (int i = 0; i < size; i++) {
-            if (storage[i].getUuid().equals(uuid)) {
+            if (uuid.equals(storage[i].getUuid())) {
                 return i;
             }
-        }
-        if (index == -1) {
-            System.out.println("Ошибка: резюме с uuid " + uuid + " нет в хранилище");
         }
         return -1;
     }
