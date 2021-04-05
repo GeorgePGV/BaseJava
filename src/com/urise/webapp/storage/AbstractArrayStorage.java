@@ -54,14 +54,6 @@ public abstract class AbstractArrayStorage implements Storage{
         }
     }
 
-    public boolean resumesComparison(Resume r1, Resume r2){
-        if(r1.getUuid().equals(r2.getUuid())) {
-            return true;
-        } {
-            return false;
-        }
-    }
-
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
     }
