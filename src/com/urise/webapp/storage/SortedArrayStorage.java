@@ -14,7 +14,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
     }
 
     @Override
-    protected void replacingDeletedResume(int index) {
+    protected void replaceDeletedResume(int index) {
         int element = size - index - 1;
         if (element > 0) {
             System.arraycopy(storage, index + 1, storage, index, element);

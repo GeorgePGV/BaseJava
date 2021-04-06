@@ -8,7 +8,7 @@ import com.urise.webapp.model.Resume;
 public class ArrayStorage extends AbstractArrayStorage {
 
     @Override
-    protected void replacingDeletedResume(int index) {
+    protected void replaceDeletedResume(int index) {
         storage[index] = storage[size - 1];
     }
 

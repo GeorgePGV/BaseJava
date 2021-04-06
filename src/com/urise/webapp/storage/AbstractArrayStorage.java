@@ -48,7 +48,7 @@ public abstract class AbstractArrayStorage implements Storage{
         int index = getIndex(uuid);
         if(index != -1) {
             if (size - index >= 0)
-                replacingDeletedResume(index);
+                replaceDeletedResume(index);
             size--;
             storage[size - 1] = null;
         }
@@ -62,7 +62,7 @@ public abstract class AbstractArrayStorage implements Storage{
         return size;
     }
 
-    protected abstract void replacingDeletedResume(int index);
+    protected abstract void replaceDeletedResume(int index);
 
     protected abstract void putResume(Resume resume, int index);
 
