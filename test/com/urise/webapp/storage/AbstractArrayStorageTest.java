@@ -1,4 +1,4 @@
-package com.urise.webapp.storage;
+/*package com.urise.webapp.storage;
 
 import com.urise.webapp.model.Resume;
 import org.junit.jupiter.api.Assertions;
@@ -105,4 +105,4 @@ class AbstractArrayStorageTest {
     void size() throws Exception {
         Assertions.assertEquals(3,storage.size());
     }
-}
+}*/
