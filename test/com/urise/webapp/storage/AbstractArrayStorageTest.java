@@ -1,11 +1,11 @@
-/*package com.urise.webapp.storage;
+package com.urise.webapp.storage;
 
+import com.urise.webapp.Exception.ExistStorageException;
+import com.urise.webapp.Exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import ru.javawebinar.basejava.exception.ExistStorageException;
-import ru.javawebinar.basejava.exception.NotExistStorageException;
-import ru.javawebinar.basejava.exception.StorageException;
+
 
 class AbstractArrayStorageTest {
 
@@ -40,13 +40,13 @@ class AbstractArrayStorageTest {
         Assertions.assertEquals(resume4,storage.get(resume4.getUuid()));
     }
 
-    @org.junit.jupiter.api.Test(expected = ExistStorageException.class)
-    void saveAlreadyExist() throws Exception {
+    @org.junit.jupiter.api.Test
+    void saveAlreadyExist() throws ExistStorageException {
         storage.save(resume1);
     }
 
-    @org.junit.jupiter.api.Test(expected = ExistStorageException.class)
-    void saveOverflow() throws Exception {
+    @org.junit.jupiter.api.Test
+    void saveOverflow() throws ExistStorageException {
         for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++ ){
             storage.save(new Resume());
         }
@@ -60,18 +60,18 @@ class AbstractArrayStorageTest {
         Assertions.assertEquals(updatedResume,storage.get(UUID_1));
     }
 
-    @org.junit.jupiter.api.Test(expected = NotExistStorageException.class)
-    public void updateNotExist() throws Exception {
+    @org.junit.jupiter.api.Test
+    public void updateNotExist() throws NotExistStorageException {
         storage.get("ytdc6");
     }
 
     @org.junit.jupiter.api.Test
     void get() throws Exception {
-        Assertions.assertEquals(resume4,storage.get("uuid4"));
+        Assertions.assertEquals(resume1, storage.get(resume1.getUuid()));
     }
 
-    @org.junit.jupiter.api.Test(expected = NotExistStorageException.class)
-    void getNotExist() throws Exception {
+   @org.junit.jupiter.api.Test
+    void getNotExist() throws NotExistStorageException {
         storage.get("ytdc6");
     }
 
@@ -81,13 +81,8 @@ class AbstractArrayStorageTest {
         Assertions.assertEquals(2, storage.size());
     }
 
-    @org.junit.jupiter.api.Test(expected = NotExistStorageException.class)
-    void getNotExist() throws Exception {
-        storage.get("ytdc6");
-    }
-
-    @org.junit.jupiter.api.Test(expected = NotExistStorageException.class)
-    public void deleteNotExist() throws Exception {
+    @org.junit.jupiter.api.Test
+    public void deleteNotExist() throws NotExistStorageException {
         storage.get("ytdc6");
     }
 
@@ -105,4 +100,4 @@ class AbstractArrayStorageTest {
     void size() throws Exception {
         Assertions.assertEquals(3,storage.size());
     }
-}*/
+}
