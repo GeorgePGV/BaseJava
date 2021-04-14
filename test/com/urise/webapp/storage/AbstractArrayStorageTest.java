@@ -2,10 +2,15 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.Exception.ExistStorageException;
 import com.urise.webapp.Exception.NotExistStorageException;
+import com.urise.webapp.Exception.StorageException;
 import com.urise.webapp.model.Resume;
-import static org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 abstract class AbstractArrayStorageTest {
@@ -46,13 +51,20 @@ abstract class AbstractArrayStorageTest {
 
     @Test
     void saveAlreadyExist() throws ExistStorageException {
-        storage.save(resume1);
+        Throwable thrown = assertThrows(ExistStorageException.class, () -> {
+            storage.save(resume1);
+        });
+        assertNotNull(thrown.getMessage());
     }
 
     @Test
     void saveOverflow() throws ExistStorageException {
-        for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++ ){
-            storage.save(new Resume());
+        try {
+            for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
+                storage.save(new Resume());
+            }
+        } catch (StorageException e) {
+            Assert.fail();
         }
         storage.save(new Resume());
     }
@@ -77,8 +89,12 @@ abstract class AbstractArrayStorageTest {
     }
 
     @Test
-    void getNotExist() throws NotExistStorageException {
-        storage.get("ytdc6");
+    void getNotExist() throws Exception {
+        IllegalArgumentException ex = assertThrows(
+                NotExistStorageException.class,
+                () ->  testClass.storage.get("ytdc6"));
+        Assertions.assertEquals("this is the exception message", ex.getMessage());
+        Assertions.assertEquals(NullPointerException.class, ex.getCause().getClass());
     }
 
     @Test
@@ -87,10 +103,10 @@ abstract class AbstractArrayStorageTest {
         Assertions.assertEquals(2, storage.size());
     }
 
-    @Test(expected = NotExistStorageException.class)
+    /*@Test(expected = NotExistStorageException.class)
     public void deleteNotExist() throws NotExistStorageException {
         storage.get("ytdc6");
-    }
+    }*/
 
 
     @Test
