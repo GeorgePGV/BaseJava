@@ -6,8 +6,8 @@ import com.urise.webapp.Exception.NotExistStorageException;
 import com.urise.webapp.Exception.StorageException;
 import com.urise.webapp.model.Resume;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.Assert.assertEquals;
 
@@ -22,11 +22,11 @@ public abstract class AbstractArrayStorageTest {
     static Resume resume3 = new Resume(UUID_3);
     static Resume resume4 = new Resume(UUID_4);
 
-    protected AbstractArrayStorageTest(Storage storage) {
+    public AbstractArrayStorageTest(Storage storage) {
         this.storage = storage;
     }
 
-    @BeforeAll
+    @Before
     public void setup() throws Exception {
         storage.clear();
         storage.save(resume1);
