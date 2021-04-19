@@ -52,11 +52,11 @@ public abstract class AbstractArrayStorageTest {
         storage.save(resume1);
     }
 
-    @Test
-    public void saveOverflow() throws ExistStorageException {
+    @Test(expected = NullPointerException.class)
+    public void saveOverflow() throws Exception {
         try {
             for (int i = 4; i <= AbstractArrayStorage.STORAGE_LIMIT; i++) {
-                storage.save(new Resume());
+                storage.save(new Resume("uuid" + i));
             }
         } catch (StorageException e) {
             Assert.fail();
@@ -94,7 +94,7 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = NotExistStorageException.class)
     public void deleteNotExist() throws Exception {
-        storage.delete("uyrsdu");
+        storage.delete("dummy");
     }
 
 
