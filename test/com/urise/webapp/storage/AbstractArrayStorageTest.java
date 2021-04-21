@@ -43,8 +43,8 @@ public abstract class AbstractArrayStorageTest {
     @Test
     public void save() throws Exception {
         storage.save(resume4);
-        assertEquals(4,storage.size());
-        assertEquals(resume4,storage.get(resume4.getUuid()));
+        assertEquals(4, storage.size());
+        assertEquals(resume4, storage.get(UUID_4));
     }
 
     @Test(expected = ExistStorageException.class)
@@ -59,7 +59,7 @@ public abstract class AbstractArrayStorageTest {
                 storage.save(new Resume("uuid" + i));
             }
         } catch (StorageException e) {
-            Assert.fail();
+            Assert.fail("Переполнение произошло раньше времени");
         }
         storage.save(new Resume());
     }
@@ -73,12 +73,12 @@ public abstract class AbstractArrayStorageTest {
 
     @Test(expected = NotExistStorageException.class)
     public void updateNotExist() throws Exception {
-        storage.get("ui5du");
+        storage.update(resume4);
     }
 
     @Test
     public void get() throws Exception {
-        assertEquals(resume1, storage.get(resume1.getUuid()));
+        assertEquals(resume1, storage.get(UUID_1));
     }
 
     @Test(expected = NotExistStorageException.class)
@@ -86,10 +86,11 @@ public abstract class AbstractArrayStorageTest {
         storage.get("uytduytdv");
     }
 
-    @Test
+    @Test(expected = NotExistStorageException.class)
     public void delete() throws Exception {
         storage.delete(UUID_1);
         assertEquals(2, storage.size());
+        storage.get(UUID_1);
     }
 
     @Test(expected = NotExistStorageException.class)
