@@ -29,10 +29,8 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         }
-        {
-            putResume(r, (Integer) index);
-            size++;
-        }
+        putResume(r, (Integer) index);
+        size++;
     }
 
     @Override
