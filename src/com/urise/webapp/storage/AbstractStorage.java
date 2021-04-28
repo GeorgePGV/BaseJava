@@ -5,7 +5,7 @@ import com.urise.webapp.Exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 
 public abstract class AbstractStorage implements Storage{
-    protected abstract Object getIndex(String uuid);
+    protected abstract Object getKey(String uuid);
     protected abstract void doUpdate(Resume r, Object key);
     protected abstract void doSave(Resume r, Object key);
     protected abstract Resume doGet(Object key);
@@ -32,7 +32,7 @@ public abstract class AbstractStorage implements Storage{
     }
 
     private Object getExistedKey(String uuid) {
-        Object key = getIndex(uuid);
+        Object key = getKey(uuid);
         if((Integer)key < 0){
             throw new NotExistStorageException(uuid);
         }
@@ -40,7 +40,7 @@ public abstract class AbstractStorage implements Storage{
     }
 
     private Object getNotExistedKey(String uuid) {
-        Object key = getIndex(uuid);
+        Object key = getKey(uuid);
         if((Integer)key >= 0){
             throw new ExistStorageException(uuid);
         }

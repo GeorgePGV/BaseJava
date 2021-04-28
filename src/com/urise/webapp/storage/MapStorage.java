@@ -7,17 +7,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class MapStorage extends AbstractStorage {
-    private Map<Object, Resume> storage = new HashMap<>();
+public class MapStorage extends AbstractStorage {
+    private Map<String, Resume> storage = new HashMap<>();
 
     @Override
     public void doSave(Resume r, Object index) {
-        storage.put(index, r);
+        storage.put(String.valueOf(index), r);
     }
 
     @Override
     public void doUpdate(Resume r, Object index) {
-        storage.put(index, r);
+        storage.put(String.valueOf(index), r);
     }
 
     @Override
@@ -42,7 +42,7 @@ public abstract class MapStorage extends AbstractStorage {
         return new ArrayList<>(storage.values());
     }
 
-    protected Integer getIndex(String uuid) {
+    protected Integer getKey(String uuid) {
         for (int i = 0; i < storage.size(); i++) {
             if (uuid.equals(storage.get(i).getUuid())) {
                 return i;

@@ -40,7 +40,7 @@ public class ListStorage extends AbstractStorage{
         return storage.toArray(new Resume[storage.size()]);
     }
 
-    protected Integer getIndex(String uuid){
+    protected Integer getKey(String uuid){
         for (int i = 0; i < storage.size(); i++) {
             if (uuid.equals(storage.get(i).getUuid())) {
                 return i;
