@@ -45,9 +45,9 @@ public class MainTestArrayStorage {
         sorted.save(r2);
         sorted.save(r1);
 
-        System.out.println(sorted.getIndex(r1.getUuid()));
-        System.out.println(sorted.getIndex(r2.getUuid()));
-        System.out.println(sorted.getIndex(r3.getUuid()));
+        System.out.println(sorted.getKey(r1.getUuid()));
+        System.out.println(sorted.getKey(r2.getUuid()));
+        System.out.println(sorted.getKey(r3.getUuid()));
     }
 
     static void printAll() {
