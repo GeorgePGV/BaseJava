@@ -12,6 +12,11 @@ public class MapStorage extends AbstractStorage {
         storage.put((String)index, r);
     }
 
+    @Override
+    protected boolean isExist(Object key) {
+        return storage.containsKey((String) key);
+    }
+
     public void doUpdate(Resume r, Object index) {
         storage.put(String.valueOf(index), r);
     }

@@ -9,6 +9,7 @@ public abstract class AbstractStorage implements Storage{
     protected abstract void doUpdate(Resume r, Object key);
     protected abstract void doSave(Resume r, Object key);
     protected abstract Resume doGet(Object key);
+    protected abstract boolean isExist(Object key);
     protected abstract void doDelete(Object key);
 
     public void update(Resume r) {
@@ -33,18 +34,18 @@ public abstract class AbstractStorage implements Storage{
 
     private Object getExistedKey(String uuid) {
         Object key = getKey(uuid);
-        if((Integer)key < 0){
+        if (!isExist(key)) {
             throw new NotExistStorageException(uuid);
         }
         return key;
     }
 
     private Object getNotExistedKey(String uuid) {
-        Object key = getKey(uuid);
-        if((Integer)key >= 0){
-            throw new ExistStorageException(uuid);
+            Object key = getKey(uuid);
+            if (isExist(key)) {
+                throw new ExistStorageException(uuid);
+            }
+            return key;
         }
-        return key;
-    }
 }
 

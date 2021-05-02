@@ -9,6 +9,11 @@ public class ListStorage extends AbstractStorage{
     private List<Resume> storage = new ArrayList<>();
 
     @Override
+    protected boolean isExist(Object searchKey) {
+        return searchKey != null;
+    }
+
+    @Override
     public void doSave(Resume r, Object index) {
         storage.add(r);
     }
@@ -46,6 +51,6 @@ public class ListStorage extends AbstractStorage{
                 return i;
             }
         }
-        return -1;
+        return null;
     }
 }

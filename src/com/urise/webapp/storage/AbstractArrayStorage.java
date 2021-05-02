@@ -6,7 +6,7 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 
 public abstract class AbstractArrayStorage extends AbstractStorage{
-    protected static final int STORAGE_LIMIT = 10000;
+    protected static final int STORAGE_LIMIT = 10;
 
     protected final Resume[] storage = new Resume[10_000];
     protected static int size = 0;
@@ -22,6 +22,11 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
 
     public Resume[] getAll() {
         return Arrays.copyOfRange(storage, 0, size);
+    }
+
+    @Override
+    protected boolean isExist(Object index) {
+        return (Integer) index >= 0;
     }
 
     @Override
