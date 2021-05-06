@@ -16,7 +16,7 @@ public class MapStorageResume extends AbstractStorage{
 
     @Override
     protected boolean isExist(Object resume) {
-        return storage.containsKey(((Resume) resume).getUuid());
+        return resume != null;
     }
 
     public void doUpdate(Resume r, Object resume) {
@@ -39,11 +39,11 @@ public class MapStorageResume extends AbstractStorage{
         return storage.size();
     }
 
-    public List<Resume> getAllSorted() {
+    public List<Resume> doCopyAll() {
         return new ArrayList<>(storage.values());
     }
 
-    protected String getKey(String uuid) {
-        return uuid;
+    protected Resume getKey(String uuid) {
+        return storage.get(uuid);
     }
 }

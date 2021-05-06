@@ -39,7 +39,7 @@ public class MapStorage extends AbstractStorage {
         return storage.size();
     }
 
-    public List<Resume> getAllSorted() {
+    public List<Resume> doCopyAll() {
         return new ArrayList<>(storage.values());
     }
 

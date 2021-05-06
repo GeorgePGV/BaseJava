@@ -41,7 +41,7 @@ public class ListStorage extends AbstractStorage{
         return storage.size();
     }
 
-    public List<Resume> getAllSorted() {
+    public List<Resume> doCopyAll() {
         return storage;
     }
 

@@ -8,7 +8,7 @@ public class SortedArrayStorage extends AbstractArrayStorage {
 
     @Override
     public Integer getKey(String uuid) {
-        Resume searchKey = new Resume();
+        Resume searchKey = new Resume("Игорь");
         searchKey.setUuid(uuid);
         return Arrays.binarySearch(storage, 0, size, searchKey);
     }
