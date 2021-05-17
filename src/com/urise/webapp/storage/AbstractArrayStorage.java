@@ -6,7 +6,7 @@ import com.urise.webapp.model.Resume;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class AbstractArrayStorage extends AbstractStorage{
+public abstract class AbstractArrayStorage extends AbstractStorage<Integer>{
     protected static final int STORAGE_LIMIT = 10_000;
     protected final Resume[] storage = new Resume[10_000];
     protected static int size = 0;
@@ -25,12 +25,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
     }
 
     @Override
-    protected boolean isExist(Object index) {
+    protected boolean isExist(Integer index) {
         return (Integer) index >= 0;
     }
 
     @Override
-    public void doSave(Resume r, Object index) {
+    public void doSave(Resume r, Integer index) {
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         }
@@ -39,17 +39,17 @@ public abstract class AbstractArrayStorage extends AbstractStorage{
     }
 
     @Override
-    public void doUpdate(Resume r, Object index) {
+    public void doUpdate(Resume r, Integer index) {
         storage[(Integer) index] = r;
     }
 
     @Override
-    public Resume doGet(Object index) {
+    public Resume doGet(Integer index) {
         return storage[(Integer) index];
     }
 
     @Override
-    public void doDelete(Object index) {
+    public void doDelete(Integer index) {
         replaceDeletedResume((Integer) index);
         storage[size - 1] = null;
         size--;
