@@ -1,10 +1,10 @@
 package com.urise.webapp.model;
 
-public class Content extends Section{
+public class SectionWithText extends Section{
 
     private String content;
 
-    public Content(String content) {
+    public SectionWithText(String content) {
         this.content = content;
     }
 
@@ -22,7 +22,7 @@ public class Content extends Section{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Content that = (Content) o;
+        SectionWithText that = (SectionWithText) o;
 
         return content.equals(that.content);
 
