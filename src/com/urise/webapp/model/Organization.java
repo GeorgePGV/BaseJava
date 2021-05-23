@@ -1,14 +1,27 @@
 package com.urise.webapp.model;
 
-public class Organization{
-    private String dates;
-    private String title;
-    private String description;
+import java.util.List;
 
-    public Organization(String dates ,String title , String description ){
-        this.dates = dates;
-        this.title = title;
-        this.description = description;
+public class Organization extends AbstractSection{
+    private List<Position> positions;
+
+    public Organization(List<Position> positions) {
+        this.positions = positions;
+    }
+
+    @Override
+    public String toString() {
+        return positions.toString();
+    }
+
+    public List<Position> getElement() {
+        return positions;
+    }
+
+    public void printElements() {
+        for (int i = 0; i < positions.size() ; i++){
+            System.out.println(positions.get(i).toString());
+        }
     }
 
     @Override
@@ -16,19 +29,14 @@ public class Organization{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Organization org = (Organization) o;
+        Organization that = (Organization) o;
 
-        if (!description.equals(org.description)) return false;
-        if (!dates.equals(org.dates)) return false;
-        return title.equals(org.title);
+        return positions.equals(that.positions);
 
     }
 
     @Override
     public int hashCode() {
-        int result = title.hashCode();
-        result = 31 * result + dates.hashCode();
-        result = 31 * result + description.hashCode();
-        return result;
+        return positions.hashCode();
     }
 }

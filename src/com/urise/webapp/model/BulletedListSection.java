@@ -2,11 +2,11 @@ package com.urise.webapp.model;
 
 import java.util.List;
 
-public class SectionWithList {
+public class BulletedListSection extends AbstractSection{
 
     private List<String> elements;
 
-    public SectionWithList(List<String> elements) {
+    public BulletedListSection(List<String> elements) {
         this.elements = elements;
     }
 
@@ -15,8 +15,14 @@ public class SectionWithList {
         return elements.toString();
     }
 
-    public List<String> getElement() {
+    public List<String> getElements() {
         return elements;
+    }
+
+    public void printElements() {
+        for (int i = 0; i < elements.size(); i++) {
+            System.out.println(elements.get(i));
+        }
     }
 
     @Override
@@ -24,7 +30,7 @@ public class SectionWithList {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SectionWithList that = (SectionWithList) o;
+        BulletedListSection that = (BulletedListSection) o;
 
         return elements.equals(that.elements);
 
