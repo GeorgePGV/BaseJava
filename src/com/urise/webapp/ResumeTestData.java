@@ -1,4 +1,4 @@
-package com.urise.webapp.storage;
+package com.urise.webapp;
 
 import com.urise.webapp.model.*;
 
@@ -62,21 +62,19 @@ public class ResumeTestData {
         education.add(new Position("Заочная физико-техническая школа при МФТИ", "http://www.school.mipt.ru/", "Student", "Закончил с отличием", LocalDate.of(1984, Month.SEPTEMBER, 1), LocalDate.of(1987, Month.JUNE, 1)));
         Organization placesOfEducation = new Organization(education);
 
-        for (SectionType type : SectionType.values()) {
-            System.out.println(type.getTitle());
-            if (type == SectionType.PERSONAL) {
-                System.out.println(personalQualities.getContent());
-            } else if(type == SectionType.OBJECTIVE) {
-                System.out.println(position.getContent());
-            } else if(type == SectionType.ACHIEVEMENT) {
-                achievements.printElements();
-            } else if(type == SectionType.QUALIFICATIONS) {
-                qualifications.printElements();
-            } else if(type == SectionType.EXPERIENCE) {
-                organization.printElements();
-            } else if(type == SectionType.EDUCATION) {
-                placesOfEducation.printElements();
-            }
-        }
+
+        System.out.println(personalQualities.toString());
+
+        System.out.println( position.toString());
+
+        System.out.println(achievements.toString());
+
+        System.out.println(qualifications.toString());
+
+        System.out.println(organization.toString());
+
+        System.out.println(placesOfEducation.toString());
+
+
     }
 }
