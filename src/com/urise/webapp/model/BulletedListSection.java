@@ -19,12 +19,6 @@ public class BulletedListSection extends AbstractSection{
         return elements;
     }
 
-    public void printElements() {
-        for (int i = 0; i < elements.size(); i++) {
-            System.out.println(elements.get(i));
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

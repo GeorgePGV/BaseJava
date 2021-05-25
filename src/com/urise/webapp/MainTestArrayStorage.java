@@ -13,12 +13,9 @@ public class MainTestArrayStorage {
     static final AbstractArrayStorage sorted = new SortedArrayStorage();
 
     public static void main(String[] args) {
-        Resume r1 = new Resume("Игорь");
-        r1.setUuid("uuid1");
-        Resume r2 = new Resume("Иван");
-        r2.setUuid("uuid2");
-        Resume r3 = new Resume("Валерий");
-        r3.setUuid("uuid3");
+        Resume r1 = new Resume("uuid1","Игорь");
+        Resume r2 = new Resume("uuid2","Иван");
+        Resume r3 = new Resume("uuid3","Валерий");
 
         ARRAY_STORAGE.save(r1);
         ARRAY_STORAGE.save(r2);

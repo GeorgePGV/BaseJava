@@ -1,26 +1,27 @@
 package com.urise.webapp.storage;
 
 
-import com.urise.webapp.Exception.ExistStorageException;
-import com.urise.webapp.Exception.NotExistStorageException;
+import com.urise.webapp.exception.ExistStorageException;
+import com.urise.webapp.exception.NotExistStorageException;
 import com.urise.webapp.model.Resume;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
-    public Storage storage;
-    private static final String UUID_1 = "uuid1";
-    private static final String UUID_2 = "uuid2";
-    private static final String UUID_3 = "uuid3";
-    private static final String UUID_4 = "uuid4";
-    static Resume resume1 = new Resume(UUID_1,"Игорь");
-    static Resume resume2 = new Resume(UUID_2,"Максим");
-    static Resume resume3 = new Resume(UUID_3,"Олег");
-    static Resume resume4 = new Resume(UUID_4,"Роман");
+    protected Storage storage;
+    protected static final String UUID_1 = "uuid1";
+    protected static final String UUID_2 = "uuid2";
+    protected static final String UUID_3 = "uuid3";
+    protected static final String UUID_4 = "uuid4";
+    protected Resume resume1 = new Resume(UUID_1,"Игорь");
+    protected Resume resume2 = new Resume(UUID_2,"Максим");
+    protected Resume resume3 = new Resume(UUID_3,"Олег");
+    protected Resume resume4 = new Resume(UUID_4,"Роман");
 
     protected AbstractStorageTest(Storage storage) {
         this.storage = storage;
@@ -51,7 +52,6 @@ public abstract class AbstractStorageTest {
     public void saveAlreadyExist() throws Exception {
         storage.save(resume1);
     }
-
 
     @Test
     public void update() throws Exception {
@@ -87,14 +87,16 @@ public abstract class AbstractStorageTest {
         storage.delete("dummy");
     }
 
-
     @Test
-    public void getAll() throws Exception {
+    public void getAllSorted() throws Exception {
+        List<Resume> resumes2 = new ArrayList<>();
+        resumes2.add(resume1);
+        resumes2.add(resume2);
+        resumes2.add(resume3);
         List<Resume> resumes = storage.getAllSorted();
         assertEquals(3, resumes.size());
-        assertEquals(resume1, resumes.get(0));
-        assertEquals(resume2, resumes.get(1));
-        assertEquals(resume3, resumes.get(2));
+        assertEquals(resumes2, resumes);
+
     }
 
     @Test

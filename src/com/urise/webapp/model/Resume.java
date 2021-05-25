@@ -2,6 +2,8 @@ package com.urise.webapp.model;
 
 import java.util.EnumMap;
 import java.util.Map;
+import java.util.UUID;
+
 
 /**
  * Initial resume class
@@ -9,27 +11,23 @@ import java.util.Map;
 public class Resume implements Comparable<Resume> {
 
     // Unique identifier
-    private String uuid;
-    private String fullName;
+    final private String uuid;
+    final private String fullName;
 
     private final Map<SectionType, AbstractSection> sections = new EnumMap<>(SectionType.class);
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
+
+    public Resume(String fullName) {
+        this(UUID.randomUUID().toString(), fullName);
+    }
 
     public Resume(String uuid, String fullName) {
         this.uuid = uuid;
         this.fullName = fullName;
     }
 
-    public Resume(String fullName) {
-        this.fullName = fullName;
-    }
-
     public String getUuid() {
         return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public AbstractSection getSection(SectionType type) {

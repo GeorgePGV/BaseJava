@@ -1,6 +1,6 @@
 package com.urise.webapp.storage;
 
-import com.urise.webapp.Exception.StorageException;
+import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
 
 import java.util.Arrays;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public abstract class AbstractArrayStorage extends AbstractStorage<Integer>{
     protected static final int STORAGE_LIMIT = 10_000;
-    protected final Resume[] storage = new Resume[10_000];
+    protected final Resume[] storage = new Resume[STORAGE_LIMIT];
     protected static int size = 0;
 
     public void clear() {
@@ -21,12 +21,12 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer>{
     }
 
     public List<Resume> doCopyAll() {
-        return Arrays.asList(Arrays.copyOfRange(storage,0,size));
+        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
     }
 
     @Override
     protected boolean isExist(Integer index) {
-        return (Integer) index >= 0;
+        return index >= 0;
     }
 
     @Override
@@ -34,23 +34,23 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer>{
         if (size == STORAGE_LIMIT) {
             throw new StorageException("Storage overflow", r.getUuid());
         }
-        putResume(r, (Integer) index);
+        putResume(r, index);
         size++;
     }
 
     @Override
     public void doUpdate(Resume r, Integer index) {
-        storage[(Integer) index] = r;
+        storage[index] = r;
     }
 
     @Override
     public Resume doGet(Integer index) {
-        return storage[(Integer) index];
+        return storage[index];
     }
 
     @Override
     public void doDelete(Integer index) {
-        replaceDeletedResume((Integer) index);
+        replaceDeletedResume(index);
         storage[size - 1] = null;
         size--;
     }

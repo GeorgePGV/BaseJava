@@ -75,6 +75,9 @@ public class ResumeTestData {
 
         System.out.println(placesOfEducation.toString());
 
-
+        for (SectionType type : SectionType.values()) {
+            System.out.println(type.getTitle());
+            System.out.println(type.toString());
+        }
     }
 }

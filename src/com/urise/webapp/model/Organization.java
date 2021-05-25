@@ -18,12 +18,6 @@ public class Organization extends AbstractSection{
         return positions;
     }
 
-    public void printElements() {
-        for (int i = 0; i < positions.size() ; i++){
-            System.out.println(positions.get(i).toString());
-        }
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
