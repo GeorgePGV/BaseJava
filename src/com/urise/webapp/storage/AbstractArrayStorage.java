@@ -21,7 +21,7 @@ public abstract class AbstractArrayStorage extends AbstractStorage<Integer>{
     }
 
     public List<Resume> doCopyAll() {
-        return Arrays.asList(Arrays.copyOfRange(storage, 0, size));
+        return Arrays.asList(Arrays.copyOf(storage, size));
     }
 
     @Override

@@ -62,22 +62,30 @@ public class ResumeTestData {
         education.add(new Position("Заочная физико-техническая школа при МФТИ", "http://www.school.mipt.ru/", "Student", "Закончил с отличием", LocalDate.of(1984, Month.SEPTEMBER, 1), LocalDate.of(1987, Month.JUNE, 1)));
         Organization placesOfEducation = new Organization(education);
 
-
+        SectionType personal = SectionType.valueOf("PERSONAL");
+        System.out.println(personal.getTitle());
         System.out.println(personalQualities.toString());
 
+        SectionType objective = SectionType.valueOf("OBJECTIVE");
+        System.out.println(objective.getTitle());
         System.out.println( position.toString());
 
+        SectionType achievement2 = SectionType.valueOf("ACHIEVEMENT");
+        System.out.println(achievement2.getTitle());
         System.out.println(achievements.toString());
 
+        SectionType qualifications2 = SectionType.valueOf("QUALIFICATIONS");
+        System.out.println(qualifications2.getTitle());
         System.out.println(qualifications.toString());
 
+        SectionType experience = SectionType.valueOf("EXPERIENCE");
+        System.out.println(experience.getTitle());
         System.out.println(organization.toString());
 
+        SectionType education2 = SectionType.valueOf("EDUCATION");
+        System.out.println(education2.getTitle());
         System.out.println(placesOfEducation.toString());
 
-        for (SectionType type : SectionType.values()) {
-            System.out.println(type.getTitle());
-            System.out.println(type.toString());
-        }
+
     }
 }
