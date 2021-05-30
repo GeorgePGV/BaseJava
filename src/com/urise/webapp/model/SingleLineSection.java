@@ -8,12 +8,8 @@ public class SingleLineSection extends AbstractSection{
         this.content = content;
     }
 
-    public String getContent() {
-        return content;
-    }
-
     @Override
-    public String toString() {
+    public String getContent() {
         return content;
     }
 

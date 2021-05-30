@@ -10,7 +10,7 @@ public class Organization extends AbstractSection{
     }
 
     @Override
-    public String toString() {
+    public String getContent() {
         return positions.toString();
     }
 

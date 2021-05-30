@@ -63,29 +63,26 @@ public class ResumeTestData {
         Organization placesOfEducation = new Organization(education);
 
         SectionType personal = SectionType.valueOf("PERSONAL");
-        System.out.println(personal.getTitle());
-        System.out.println(personalQualities.toString());
+        personal.setContent(personalQualities.getContent());
 
         SectionType objective = SectionType.valueOf("OBJECTIVE");
-        System.out.println(objective.getTitle());
-        System.out.println( position.toString());
+        objective.setContent(position.getContent());
 
         SectionType achievement2 = SectionType.valueOf("ACHIEVEMENT");
-        System.out.println(achievement2.getTitle());
-        System.out.println(achievements.toString());
+        achievement2.setContent(achievements.getContent());
 
         SectionType qualifications2 = SectionType.valueOf("QUALIFICATIONS");
-        System.out.println(qualifications2.getTitle());
-        System.out.println(qualifications.toString());
+        qualifications2.setContent(qualifications.getContent());
 
         SectionType experience = SectionType.valueOf("EXPERIENCE");
-        System.out.println(experience.getTitle());
-        System.out.println(organization.toString());
+        experience.setContent(organization.getContent());
 
         SectionType education2 = SectionType.valueOf("EDUCATION");
-        System.out.println(education2.getTitle());
-        System.out.println(placesOfEducation.toString());
+        education2.setContent(placesOfEducation.getContent());
 
-
+        for(SectionType type : SectionType.values()) {
+            System.out.println(type.getTitle());
+            System.out.println(type.getContent());
+        }
     }
 }

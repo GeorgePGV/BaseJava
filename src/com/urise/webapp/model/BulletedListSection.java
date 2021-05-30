@@ -11,7 +11,7 @@ public class BulletedListSection extends AbstractSection{
     }
 
     @Override
-    public String toString() {
+    public String getContent() {
         return elements.toString();
     }
 
