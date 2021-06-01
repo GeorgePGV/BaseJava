@@ -84,7 +84,6 @@ public class ResumeTestData {
             System.out.println(resume.getSection(type).getContent());
         }
 
-        System.out.println("Контакты");
         for(ContactType type : ContactType.values()) {
             System.out.println(type.getTitle());
             System.out.println(resume.getContact(type));
