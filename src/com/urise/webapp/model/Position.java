@@ -3,9 +3,9 @@ package com.urise.webapp.model;
 import java.time.LocalDate;
 
 public class Position {
-    private final Link homePage;
-    private final LocalDate startDate;
-    private final LocalDate endDate;
+    private Link homePage;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private String title;
     private String description;
 

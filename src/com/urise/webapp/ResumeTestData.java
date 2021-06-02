@@ -9,7 +9,19 @@ import java.util.List;
 
 public class ResumeTestData {
     public static void main(String[] args){
-        Resume resume = new Resume("uuid1", "Григорий Кислин");
+        Resume resume = createResume("uuid1","Григорий Кислин");
+            for (SectionType type : SectionType.values()) {
+                System.out.println(type.getTitle());
+                System.out.println(resume.getSection(type).getContent());
+            }
+
+            for (ContactType type : ContactType.values()) {
+                System.out.println(type.getTitle());
+                System.out.println(resume.getContact(type));
+            }
+    }
+    public static Resume createResume(String uuid, String fullName){
+        Resume resume = new Resume(uuid, fullName);
 
         SingleLineSection personalQualities = new SingleLineSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
 
@@ -43,17 +55,17 @@ public class ResumeTestData {
         BulletedListSection qualifications = new BulletedListSection(qualification);
 
         List<Position> organizations = new ArrayList<>();
-        organizations.add(new Position("Java Online Projects","https://javaops.ru/","Автор проекта.","Создание, организация и проведение Java онлайн проектов и стажировок", LocalDate.of(2013, Month.OCTOBER, 1), LocalDate.of(2021, Month.MAY, 1)));
-        organizations.add(new Position("Wrike", "https://www.wrike.com/", "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO." , LocalDate.of(2014, Month.OCTOBER, 1), LocalDate.of(2017, Month.JANUARY, 1)));
-        organizations.add(new Position("Luxoft (Deutsche Bank)", "https://career.luxoft.com/locations/russia/", "Ведущий программист", "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5." , LocalDate.of(2010, Month.DECEMBER, 1), LocalDate.of(2012, Month.APRIL, 1)));
+        organizations.add(new Position("Java Online Projects", "https://javaops.ru/", "Автор проекта.", "Создание, организация и проведение Java онлайн проектов и стажировок", LocalDate.of(2013, Month.OCTOBER, 1), LocalDate.of(2021, Month.MAY, 1)));
+        organizations.add(new Position("Wrike", "https://www.wrike.com/", "Старший разработчик (backend)", "Проектирование и разработка онлайн платформы управления проектами Wrike (Java 8 API, Maven, Spring, MyBatis, Guava, Vaadin, PostgreSQL, Redis). Двухфакторная аутентификация, авторизация по OAuth1, OAuth2, JWT SSO.", LocalDate.of(2014, Month.OCTOBER, 1), LocalDate.of(2017, Month.JANUARY, 1)));
+        organizations.add(new Position("Luxoft (Deutsche Bank)", "https://career.luxoft.com/locations/russia/", "Ведущий программист", "Участие в проекте Deutsche Bank CRM (WebLogic, Hibernate, Spring, Spring MVC, SmartGWT, GWT, Jasper, Oracle). Реализация клиентской и серверной части CRM. Реализация RIA-приложения для администрирования, мониторинга и анализа результатов в области алгоритмического трейдинга. JPA, Spring, Spring-MVC, GWT, ExtGWT (GXT), Highstock, Commet, HTML5.", LocalDate.of(2010, Month.DECEMBER, 1), LocalDate.of(2012, Month.APRIL, 1)));
         organizations.add(new Position("Yota", "https://www.yota.ru/", "Ведущий специалист", "Дизайн и имплементация Java EE фреймворка для отдела \"Платежные Системы\" (GlassFish v2.1, v3, OC4J, EJB3, JAX-WS RI 2.1, Servlet 2.4, JSP, JMX, JMS, Maven2). Реализация администрирования, статистики и мониторинга фреймворка. Разработка online JMX клиента (Python/ Jython, Django, ExtJS)", LocalDate.of(2008, Month.JUNE, 1), LocalDate.of(2010, Month.DECEMBER, 1)));
-        organizations.add(new Position("Enkata", "https://www.pega.com/products/platform/robotic-process-automation", "Разработчик ПО" , "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining).", LocalDate.of(2007, Month.MARCH, 1), LocalDate.of(2008, Month.MAY, 1)));
-        organizations.add(new Position("Siemens AG", "https://new.siemens.com/ru/ru.html" , "Разработчик ПО", "Разработка информационной модели, проектирование интерфейсов, реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix).", LocalDate.of(2005, Month.JANUARY, 1), LocalDate.of(2007, Month.DECEMBER, 1)));
-        organizations.add(new Position("Alcatel" , "http://www.alcatel.ru/","Инженер по аппаратному и программному тестированию", "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).", LocalDate.of(1997, Month.SEPTEMBER, 1), LocalDate.of(2005, Month.JANUARY, 1)));
+        organizations.add(new Position("Enkata", "https://www.pega.com/products/platform/robotic-process-automation", "Разработчик ПО", "Реализация клиентской (Eclipse RCP) и серверной (JBoss 4.2, Hibernate 3.0, Tomcat, JMS) частей кластерного J2EE приложения (OLAP, Data mining).", LocalDate.of(2007, Month.MARCH, 1), LocalDate.of(2008, Month.MAY, 1)));
+        organizations.add(new Position("Siemens AG", "https://new.siemens.com/ru/ru.html", "Разработчик ПО", "Разработка информационной модели, проектирование интерфейсов, реализация и отладка ПО на мобильной IN платформе Siemens @vantage (Java, Unix).", LocalDate.of(2005, Month.JANUARY, 1), LocalDate.of(2007, Month.DECEMBER, 1)));
+        organizations.add(new Position("Alcatel", "http://www.alcatel.ru/", "Инженер по аппаратному и программному тестированию", "Тестирование, отладка, внедрение ПО цифровой телефонной станции Alcatel 1000 S12 (CHILL, ASM).", LocalDate.of(1997, Month.SEPTEMBER, 1), LocalDate.of(2005, Month.JANUARY, 1)));
         Organization organization = new Organization(organizations);
 
         List<Position> education = new ArrayList<>();
-        education.add(new Position("Coursera", "https://www.coursera.org/learn/progfun1" , "Student", "\"Functional Programming Principles in Scala\" by Martin Odersky", LocalDate.of(2013, Month.MARCH, 1), LocalDate.of(2013, Month.MAY, 1)));
+        education.add(new Position("Coursera", "https://www.coursera.org/learn/progfun1", "Student", "\"Functional Programming Principles in Scala\" by Martin Odersky", LocalDate.of(2013, Month.MARCH, 1), LocalDate.of(2013, Month.MAY, 1)));
         education.add(new Position("Luxoft", "https://www.luxoft-training.ru/kurs/obektno-orientirovannyy_analiz_i_proektirovanie_na_uml.html", "Student", "Курс \"Объектно-ориентированный анализ ИС. Концептуальное моделирование на UML.\"", LocalDate.of(2011, Month.MARCH, 1), LocalDate.of(2011, Month.APRIL, 1)));
         education.add(new Position("Siemens AG", "https://new.siemens.com/ru/ru.html", "Student", "3 месяца обучения мобильным IN сетям (Берлин)", LocalDate.of(2005, Month.JANUARY, 1), LocalDate.of(2005, Month.APRIL, 1)));
         education.add(new Position("Alcatel", "http://www.alcatel.ru/", "Student", "6 месяцев обучения цифровым телефонным сетям (Москва)", LocalDate.of(1997, Month.SEPTEMBER, 1), LocalDate.of(1998, Month.MARCH, 1)));
@@ -78,15 +90,6 @@ public class ResumeTestData {
         resume.setContact(ContactType.valueOf("GITHUB"), "https://github.com/gkislin");
         resume.setContact(ContactType.valueOf("STACKOVERFLOW"), "https://stackoverflow.com/users/548473/grigory-kislin");
         resume.setContact(ContactType.valueOf("HOME_PAGE"), "http://gkislin.ru/");
-
-        for(SectionType type : SectionType.values()) {
-            System.out.println(type.getTitle());
-            System.out.println(resume.getSection(type).getContent());
-        }
-
-        for(ContactType type : ContactType.values()) {
-            System.out.println(type.getTitle());
-            System.out.println(resume.getContact(type));
-        }
+        return resume;
     }
 }
