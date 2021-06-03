@@ -11,8 +11,8 @@ import java.util.UUID;
 public class Resume implements Comparable<Resume> {
 
     // Unique identifier
-    final private String uuid;
-    final private String fullName;
+    private final String uuid;
+    private final String fullName;
 
     private final Map<SectionType, AbstractSection> sections = new EnumMap<>(SectionType.class);
     private final Map<ContactType, String> contacts = new EnumMap<>(ContactType.class);
@@ -65,7 +65,7 @@ public class Resume implements Comparable<Resume> {
         Resume resume = (Resume) o;
 
         if (!uuid.equals(resume.uuid)) return false;
-        return fullName.equals(resume.fullName);
+        return fullName.equals(resume.fullName) && sections.equals(resume.sections) && contacts.equals(resume.contacts);
 
     }
 
@@ -73,6 +73,8 @@ public class Resume implements Comparable<Resume> {
     public int hashCode() {
         int result = uuid.hashCode();
         result = 31 * result + fullName.hashCode();
+        result = 31 * result + sections.hashCode();
+        result = 31 * result + contacts.hashCode();
         return result;
     }
 }

@@ -2,14 +2,18 @@ package com.urise.webapp.model;
 
 import java.util.List;
 
-public class Organization extends AbstractSection{
+public class Organization{
     private List<Position> positions;
+    private Link homePage;
+    private String name;
+    private String url;
 
-    public Organization(List<Position> positions) {
+    public Organization(String name, String url, List<Position> positions) {
+        this.name = name;
+        this.url  = url;
         this.positions = positions;
     }
 
-    @Override
     public String getContent() {
         return positions.toString();
     }
@@ -18,7 +22,6 @@ public class Organization extends AbstractSection{
         return positions;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -29,8 +32,11 @@ public class Organization extends AbstractSection{
 
     }
 
-    @Override
     public int hashCode() {
         return positions.hashCode();
+    }
+
+    public String toString() {
+        return "Organization(" + name + "," + url + "," + positions + ')';
     }
 }

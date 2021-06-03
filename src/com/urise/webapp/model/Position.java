@@ -3,14 +3,12 @@ package com.urise.webapp.model;
 import java.time.LocalDate;
 
 public class Position {
-    private Link homePage;
     private LocalDate startDate;
     private LocalDate endDate;
     private String title;
     private String description;
 
-    public Position(String name, String url, String title , String description, LocalDate startDate, LocalDate endDate ){
-        this.homePage = new Link(name, url);
+    public Position(String title , String description, LocalDate startDate, LocalDate endDate ){
         this.startDate = startDate;
         this.endDate = endDate;
         this.title = title;
@@ -42,8 +40,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Organization{" +
-                "homePage=" + homePage +
+        return "Position{" +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
                 ", title='" + title + '\'' +
