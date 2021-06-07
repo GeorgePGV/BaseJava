@@ -10,15 +10,15 @@ import java.util.List;
 public class ResumeTestData {
     public static void main(String[] args){
         Resume resume = createResume("uuid1","Григорий Кислин");
-            for (SectionType type : SectionType.values()) {
-                System.out.println(type.getTitle());
-                System.out.println(resume.getSection(type).getContent());
-            }
+        for (SectionType type : SectionType.values()) {
+            System.out.println(type.getTitle());
+            System.out.println(resume.getSection(type).getContent());
+        }
 
-            for (ContactType type : ContactType.values()) {
-                System.out.println(type.getTitle());
-                System.out.println(resume.getContact(type));
-            }
+        for (ContactType type : ContactType.values()) {
+            System.out.println(type.getTitle());
+            System.out.println(resume.getContact(type));
+        }
     }
     public static Resume createResume(String uuid, String fullName){
         Resume resume = new Resume(uuid, fullName);

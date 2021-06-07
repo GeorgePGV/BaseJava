@@ -1,10 +1,13 @@
 package com.urise.webapp.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Organization{
+public class Organization implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private List<Position> positions;
-    private Link homePage;
     private String name;
     private String url;
 

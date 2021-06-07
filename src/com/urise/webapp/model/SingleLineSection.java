@@ -2,6 +2,8 @@ package com.urise.webapp.model;
 
 public class SingleLineSection extends AbstractSection{
 
+    private static final long serialVersionUID = 1L;
+
     private String content;
 
     public SingleLineSection(String content) {
