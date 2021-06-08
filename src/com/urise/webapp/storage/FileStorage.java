@@ -2,7 +2,7 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
-import com.urise.webapp.storage.serializer.ObjectStreamSerializer;
+import com.urise.webapp.storage.serializer.ObjectStreamPathStorage;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import java.util.List;
 
 public class FileStorage extends AbstractStorage<File>{
     private File directory;
-    private ObjectStreamSerializer streamSerializer;
+    private ObjectStreamPathStorage streamSerializer;
 
-    protected FileStorage(File directory, ObjectStreamSerializer streamSerializer) {
+    protected FileStorage(File directory, ObjectStreamPathStorage streamSerializer) {
         this.streamSerializer = streamSerializer;
         if (!directory.isDirectory()) {
             throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");
