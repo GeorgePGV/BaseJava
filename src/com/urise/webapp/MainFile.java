@@ -4,7 +4,7 @@ import java.io.File;
 
 public class MainFile {
     public static void main(String[] args) {
-        File file = new File("./src/com/urise/webapp");
+        File file = new File("G:\\Users\\basejava");
         printDirectory(file,"");
     }
     public static void printDirectory(File file, String offset) {
@@ -14,8 +14,8 @@ public class MainFile {
                 if (dir.isFile()) {
                     System.out.println(offset + "File: " + dir.getName());
                 } else if (dir.isDirectory()) {
-                    System.out.println("Directory: " + dir.getName());
-                    printDirectory(dir, "  ");
+                    System.out.println(offset + "Directory: " + dir.getName());
+                    printDirectory(dir, offset + " ");
                 }
             }
         }

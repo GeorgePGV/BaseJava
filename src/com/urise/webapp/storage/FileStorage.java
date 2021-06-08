@@ -1,8 +1,8 @@
 package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.StorageException;
-
 import com.urise.webapp.model.Resume;
+import com.urise.webapp.storage.serializer.ObjectStreamSerializer;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -13,8 +13,14 @@ public class FileStorage extends AbstractStorage<File>{
     private ObjectStreamSerializer streamSerializer;
 
     protected FileStorage(File directory, ObjectStreamSerializer streamSerializer) {
-        this.directory = directory;
         this.streamSerializer = streamSerializer;
+        if (!directory.isDirectory()) {
+            throw new IllegalArgumentException(directory.getAbsolutePath() + " is not directory");
+        }
+        if (!directory.canRead() || !directory.canWrite()) {
+            throw new IllegalArgumentException(directory.getAbsolutePath() + " is not readable/writable");
+        }
+        this.directory = directory;
     }
 
     @Override
@@ -58,17 +64,15 @@ public class FileStorage extends AbstractStorage<File>{
 
     @Override
     protected void doDelete(File file) {
-        file.delete();
+        if (!file.delete()) {
+            throw new StorageException("File delete error", file.getName());
+        }
     }
 
     @Override
     protected List<Resume> doCopyAll() {
-        File[] files = directory.listFiles();
-        if (files == null) {
-            throw new StorageException("Directory read error");
-        }
-        List<Resume> list = new ArrayList<>(files.length);
-        for (File file : files) {
+        List<Resume> list = new ArrayList<>(exceptionChecking().length);
+        for (File file : exceptionChecking()) {
             list.add(doGet(file));
         }
         return list;
@@ -76,21 +80,21 @@ public class FileStorage extends AbstractStorage<File>{
 
     @Override
     public void clear() {
-        File[] files = directory.listFiles();
-        if (files != null) {
-            for (File file : files) {
-                doDelete(file);
-            }
+        for (File file : exceptionChecking()) {
+            doDelete(file);
         }
     }
 
     @Override
     public int size() {
-        String[] list = directory.list();
-        if (list != null) {
-            return list.length;
-        } else {
+        return exceptionChecking().length;
+    }
+
+    public File[] exceptionChecking(){
+        File[] files = directory.listFiles();
+        if (files == null) {
             throw new StorageException("Directory read error");
         }
+        return files;
     }
 }
