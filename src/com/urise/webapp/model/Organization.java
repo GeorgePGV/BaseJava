@@ -1,18 +1,24 @@
 package com.urise.webapp.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
+@XmlAccessorType(XmlAccessType.FIELD)
 
 public class Organization implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     private List<Position> positions;
-    private final Link homePage;
+    private Link homePage;
+
+    public Organization() {
+    }
 
     public Organization(String name, String url, List<Position> positions) {
         this(new Link(name, url), positions);
@@ -25,6 +31,14 @@ public class Organization implements Serializable {
     public Organization(Link homePage, List<Position> positions) {
         this.homePage = homePage;
         this.positions = positions;
+    }
+
+    public Link getHomePage() {
+        return homePage;
+    }
+
+    public List<Position> getPositions() {
+        return positions;
     }
 
     public String getContent() {
@@ -53,6 +67,8 @@ public class Organization implements Serializable {
         return "Organization(" + homePage.toString() +"," + positions + ')';
     }
 
+    @XmlAccessorType(XmlAccessType.FIELD)
+
     public static class Position implements Serializable {
         public LocalDate startDate;
         private LocalDate endDate;
@@ -63,7 +79,7 @@ public class Organization implements Serializable {
             this.startDate = startDate;
             this.endDate = endDate;
             this.title = title;
-            this.description = description;
+            this.description = description == null ? "" : description;
         }
 
         public Position(LocalDate startDate, LocalDate endDate, String title, String description) {
@@ -80,6 +96,22 @@ public class Organization implements Serializable {
             this.startDate = startDate;
             this.title = title;
             this.description = description;
+        }
+
+        public LocalDate getStartDate() {
+            return startDate;
+        }
+
+        public LocalDate getEndDate() {
+            return endDate;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public String getDescription() {
+            return description;
         }
 
         @Override

@@ -17,6 +17,10 @@ public class BulletedListSection extends AbstractSection{
         this(Arrays.asList(items));
     }
 
+    public List<String> getItems() {
+        return elements;
+    }
+
     @Override
     public String getContent() {
         return elements.toString();

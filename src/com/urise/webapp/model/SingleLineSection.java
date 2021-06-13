@@ -6,6 +6,9 @@ public class SingleLineSection extends AbstractSection{
 
     private String content;
 
+    public SingleLineSection() {
+    }
+
     public SingleLineSection(String content) {
         this.content = content;
     }

@@ -2,13 +2,14 @@ package com.urise.webapp.storage;
 
 import com.urise.webapp.exception.StorageException;
 import com.urise.webapp.model.Resume;
-import com.urise.webapp.storage.serializer.ObjectStreamPathStorage;
+import com.urise.webapp.storage.serializer.StreamSerializer;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -16,16 +17,16 @@ import java.util.stream.Stream;
 
 public class PathStorage extends AbstractStorage<Path>{
     private Path directory;
-    private ObjectStreamPathStorage streamSerializer;
+    private StreamSerializer streamSerializer;
 
-    protected PathStorage (Path directory, ObjectStreamPathStorage streamSerializer){
-        Objects.requireNonNull(directory, "directory must not be null");
+    protected PathStorage (String dir, StreamSerializer streamSerializer){
+        Objects.requireNonNull(dir, "directory must not be null");
 
         this.streamSerializer = streamSerializer;
+        directory = Paths.get(dir);
         if (!Files.isDirectory(directory) || !Files.isWritable(directory)) {
-            throw new IllegalArgumentException(directory + " is not directory or is not writable");
+            throw new IllegalArgumentException( directory + " is not directory or is not writable");
         }
-        this.directory = directory;
     }
 
 
