@@ -62,7 +62,6 @@ public class PathStorage extends AbstractStorage<Path>{
             throw new StorageException("Path read error", path.getFileName().toString(), e);
         }
     }
-
     @Override
     protected boolean isExist(Path path) {
         return Files.isRegularFile(path);
