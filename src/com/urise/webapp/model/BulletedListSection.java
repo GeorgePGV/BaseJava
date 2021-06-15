@@ -13,6 +13,9 @@ public class BulletedListSection extends AbstractSection{
         this.elements = elements;
     }
 
+    public BulletedListSection() {
+    }
+
     public BulletedListSection(String... items) {
         this(Arrays.asList(items));
     }

@@ -80,6 +80,9 @@ public class Organization implements Serializable {
         private String title;
         private String description;
 
+        public Position() {
+        }
+
         public Position(String title , String description, LocalDate startDate, LocalDate endDate ){
             this.startDate = startDate;
             this.endDate = endDate;
