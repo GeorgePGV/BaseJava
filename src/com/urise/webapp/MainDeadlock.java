@@ -10,7 +10,6 @@ public class MainDeadlock {
 
     private static void deadLock(Object lock1, Object lock2) {
         new Thread(() -> {
-            System.out.println(Thread.currentThread().getName());
             System.out.println("Waiting " + lock1);
             synchronized (lock1) {
                 System.out.println("Holding " + lock1);
