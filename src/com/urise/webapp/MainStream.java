@@ -1,68 +1,34 @@
 package com.urise.webapp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.util.stream.Collectors.partitioningBy;
 
 public class MainStream {
-    private static int minValue(int[] values) {
-        Thread thread0 = new Thread() {
-            int result = 0;
-
-            @Override
-            public void run() {
-                ArrayList<Integer> list = new ArrayList<>();
-                for (Integer i : values) {
-                    if (!list.contains(i)) {
-                        list.add(i);
-                    }
-                }
-                for (int a = 1; a < list.size(); a++) {
-                    int min = list.get(0);
-                    for (int i = 1; i < list.size(); i++) {
-                        if (min > list.get(0)) min = list.get(i);
-                    }
-                    result += min * 10 * list.size();
-                    list.remove(min);
-                }
-                return result;
-            }
-
-            public int getMin() {
-                return result;
-            }
-        };
-
-        thread0.start();
+    private static void minValue(int[] values) {
+        IntStream stream = Arrays.stream(values);
+        List<Integer> uniqueElements = Arrays.stream(values).boxed().collect(Collectors.toList()).stream().distinct().collect(Collectors.toList());
 
 
     }
 
     private static List<Integer> oddOrEven(List<Integer> integers) {
-        Thread thread0 = new Thread() {
-            @Override
-            public void run() {
-                int sum = 0;
-                for(int i = 0; i < integers.size(); i++) {
-                    sum += integers.get(i);
-                }
-                if(sum % 2 == 0){
-                    integers.removeIf(i -> i % 2 == 0);
-                } else {
-                    integers.removeIf(i -> i % 2 != 0);
-                }
-            }
-        };
-        thread0.start();
+        return integers.stream().collect(partitioningBy(x -> x % 2 == 0)).get(integers.stream().collect(partitioningBy(x -> x % 2 == 0)).get(false).size() % 2 != 0);
     }
 
     public static void main(String[] args) throws InterruptedException {
-        int[] mas = { 2, 3, 4, 8, 9 };
+        int[] mas = { 5,1,1,1,2,2,2,3,3,5 };
         List<Integer> list = new ArrayList();
         list.add(2);
         list.add(6);
         list.add(8);
         list.add(3);
-        System.out.println(minValue(mas));
+        list.add(1);
+        minValue(mas);
         System.out.println(oddOrEven(list));
     }
 }
