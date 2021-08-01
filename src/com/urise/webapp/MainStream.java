@@ -3,17 +3,13 @@ package com.urise.webapp;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 import static java.util.stream.Collectors.partitioningBy;
 
 public class MainStream {
-    private static void minValue(int[] values) {
-        IntStream stream = Arrays.stream(values);
-        List<Integer> uniqueElements = Arrays.stream(values).boxed().collect(Collectors.toList()).stream().distinct().collect(Collectors.toList());
-
-
+    private static int minValue(int[] values) {
+        int identity = 0;
+        return Arrays.stream(values).boxed().distinct().sorted().reduce(identity, (x, y) -> x + y);
     }
 
     private static List<Integer> oddOrEven(List<Integer> integers) {
@@ -28,7 +24,7 @@ public class MainStream {
         list.add(8);
         list.add(3);
         list.add(1);
-        minValue(mas);
+        System.out.println(minValue(mas));
         System.out.println(oddOrEven(list));
     }
 }
