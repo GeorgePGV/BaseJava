@@ -9,7 +9,7 @@ import static java.util.stream.Collectors.partitioningBy;
 public class MainStream {
     private static int minValue(int[] values) {
         int identity = 0;
-        return Arrays.stream(values).boxed().distinct().sorted().reduce(identity, (x, y) -> x + y);
+        return Arrays.stream(values).boxed().distinct().sorted().reduce(identity ,(x, y) -> x * 10 + y);
     }
 
     private static List<Integer> oddOrEven(List<Integer> integers) {
