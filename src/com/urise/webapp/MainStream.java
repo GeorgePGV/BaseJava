@@ -15,10 +15,17 @@ public class MainStream {
     }
 
     private static int minValue(int[] values) {
-        return Arrays.stream(values).distinct().sorted().reduce(0, (x, y) -> x * 10 + y);
+        return Arrays.stream(values)
+                .distinct()
+                .sorted()
+                .reduce(0, (x, y) -> x * 10 + y);
     }
 
     private static List<Integer> oddOrEven(List<Integer> integers) {
-        return integers.stream().collect(partitioningBy(x -> x % 2 == 0)).get(integers.stream().collect(partitioningBy(x -> x % 2 == 0)).get(false).size() % 2 != 0);
+        return integers.stream()
+                .collect(partitioningBy(x -> x % 2 == 0))
+                .get(integers.stream()
+                        .collect(partitioningBy(x -> x % 2 == 0))
+                        .get(false).size() % 2 != 0);
     }
 }
