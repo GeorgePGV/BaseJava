@@ -1,5 +1,6 @@
 package com.urise.webapp.storage;
 
+import com.urise.webapp.Config;
 import com.urise.webapp.ResumeTestData;
 import com.urise.webapp.exception.ExistStorageException;
 import com.urise.webapp.exception.NotExistStorageException;
@@ -8,20 +9,22 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 import static org.junit.Assert.assertEquals;
 
 public abstract class AbstractStorageTest {
 
-    protected static final File STORAGE_DIR = new File("G:\\Users\\basejava\\storage");
+    protected static final File STORAGE_DIR = Config.get().getStorageDir();
 
     protected Storage storage;
-    protected static final String UUID_1 = "uuid1";
-    protected static final String UUID_2 = "uuid2";
-    protected static final String UUID_3 = "uuid3";
-    protected static final String UUID_4 = "uuid4";
+    protected static final String UUID_1 = UUID.randomUUID().toString();
+    protected static final String UUID_2 = UUID.randomUUID().toString();
+    protected static final String UUID_3 = UUID.randomUUID().toString();
+    protected static final String UUID_4 = UUID.randomUUID().toString();
 
     private static final Resume R1;
     private static final Resume R2;
@@ -104,14 +107,11 @@ public abstract class AbstractStorageTest {
 
     @Test
     public void getAllSorted() throws Exception {
-        List<Resume> resumes2 = new ArrayList<>();
-        resumes2.add(R1);
-        resumes2.add(R2);
-        resumes2.add(R3);
-        List<Resume> resumes = storage.getAllSorted();
-        assertEquals(3, resumes.size());
-        assertEquals(resumes2, resumes);
-
+        List<Resume> list = storage.getAllSorted();
+        assertEquals(3, list.size());
+        List<Resume> sortedResumes = Arrays.asList(R1, R2, R3);
+        Collections.sort(sortedResumes);
+        assertEquals(list, sortedResumes);
     }
 
     @Test
