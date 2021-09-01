@@ -1,11 +1,8 @@
 package com.urise.webapp;
 
-import com.urise.webapp.model.*;
-
-import java.time.LocalDate;
-import java.time.Month;
-import java.util.ArrayList;
-import java.util.List;
+import com.urise.webapp.model.ContactType;
+import com.urise.webapp.model.Resume;
+import com.urise.webapp.model.SectionType;
 
 public class ResumeTestData {
     public static void main(String[] args){
@@ -23,7 +20,7 @@ public class ResumeTestData {
     public static Resume createResume(String uuid, String fullName){
         Resume resume = new Resume(uuid, fullName);
 
-        SingleLineSection personalQualities = new SingleLineSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
+        /*SingleLineSection personalQualities = new SingleLineSection("Аналитический склад ума, сильная логика, креативность, инициативность. Пурист кода и архитектуры.");
 
         SingleLineSection position = new SingleLineSection("Ведущий стажировок и корпоративного обучения по Java Web и Enterprise технологиям");
 
@@ -114,7 +111,7 @@ public class ResumeTestData {
         resume.setContact(ContactType.valueOf("LINKEDIN"), "https://www.linkedin.com/in/gkislin");
         resume.setContact(ContactType.valueOf("GITHUB"), "https://github.com/gkislin");
         resume.setContact(ContactType.valueOf("STACKOVERFLOW"), "https://stackoverflow.com/users/548473/grigory-kislin");
-        resume.setContact(ContactType.valueOf("HOME_PAGE"), "http://gkislin.ru/");
+        resume.setContact(ContactType.valueOf("HOME_PAGE"), "http://gkislin.ru/");*/
         return resume;
     }
 }
