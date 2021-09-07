@@ -101,7 +101,7 @@ public class ResumeTestData {
         resume.setSection(SectionType.valueOf("ACHIEVEMENT"), achievements);
         resume.setSection(SectionType.valueOf("QUALIFICATIONS"), qualifications);
         resume.setSection(SectionType.valueOf("EXPERIENCE"), organization);
-        resume.setSection(SectionType.valueOf("EDUCATION"), placesOfEducation);
+        resume.setSection(SectionType.valueOf("EDUCATION"), placesOfEducation);*/
 
         resume.setContact(ContactType.valueOf("PHONE"), "+7(921) 855-0482");
         resume.setContact(ContactType.valueOf("MOBILE"), "-");
@@ -111,7 +111,7 @@ public class ResumeTestData {
         resume.setContact(ContactType.valueOf("LINKEDIN"), "https://www.linkedin.com/in/gkislin");
         resume.setContact(ContactType.valueOf("GITHUB"), "https://github.com/gkislin");
         resume.setContact(ContactType.valueOf("STACKOVERFLOW"), "https://stackoverflow.com/users/548473/grigory-kislin");
-        resume.setContact(ContactType.valueOf("HOME_PAGE"), "http://gkislin.ru/");*/
+        resume.setContact(ContactType.valueOf("HOME_PAGE"), "http://gkislin.ru/");
         return resume;
     }
 }
