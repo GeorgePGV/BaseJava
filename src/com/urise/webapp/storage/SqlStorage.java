@@ -48,9 +48,9 @@ public class SqlStorage implements Storage {
 
     @Override
     public void update(Resume r) {
-        String uuid = r.getUuid();
         sqlHelper.transactionalExecute(conn -> {
             try (PreparedStatement ps = conn.prepareStatement("UPDATE resume SET full_name = ? WHERE uuid = ?")) {
+                String uuid = r.getUuid();
                 ps.setString(1, r.getFullName());
                 ps.setString(2, uuid);
                 if (ps.executeUpdate() != 1) {
